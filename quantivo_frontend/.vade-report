@@ -1,0 +1,45 @@
+# Vercel Web Analytics Implementation
+
+## Summary
+Successfully implemented Vercel Web Analytics in the Quantivo frontend application following the official Next.js App Router integration guide.
+
+## Changes Made
+
+### 1. Installed Dependencies
+- Added `@vercel/analytics` package (version ^1.6.1) to project dependencies
+- Updated package-lock.json with the new dependency and its transitive dependencies
+
+### 2. Modified Files
+- **app/layout.js**: 
+  - Added import statement: `import { Analytics } from "@vercel/analytics/next";`
+  - Added `<Analytics />` component at the end of the body section, right after the `{children}` render
+  - This placement ensures analytics tracking is initialized on all pages while keeping it outside the main content flow
+
+### 3. Implementation Details
+- Using Next.js App Router pattern (the project uses Next.js 16.1.6)
+- The Analytics component is placed in the root layout, which means it will be included on every page
+- The component placement follows Vercel's official documentation for Next.js App Router projects
+- The Analytics component provides automatic route tracking for Next.js applications
+
+### 4. Build Verification
+- Successfully ran `npm run build` - build completed without errors
+- The project compiles and generates all static pages correctly
+- Existing linting errors in other files remain unchanged (not introduced by this change)
+
+## Next Steps for the User
+After deploying this code to Vercel:
+1. Enable Web Analytics in the Vercel dashboard (Project > Analytics tab > Enable)
+2. Deploy the application to Vercel
+3. Once deployed, verify tracking by checking browser Network tab for requests to `/_vercel/insights/view`
+4. View analytics data in the Vercel dashboard under the Analytics tab
+
+## Files Modified
+- `quantivo_frontend/app/layout.js` - Added Analytics component import and render
+- `quantivo_frontend/package.json` - Added @vercel/analytics dependency
+- `quantivo_frontend/package-lock.json` - Updated with new dependency tree
+
+## Technical Notes
+- The implementation follows the exact pattern specified in Vercel's documentation for Next.js App Router projects
+- No breaking changes introduced
+- The Analytics component is lightweight and won't impact page performance
+- Analytics will only send data when deployed to Vercel (no data sent in local development by default)

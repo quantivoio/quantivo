@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create a custom axios instance pointing to our Node backend
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', 
+  baseURL: process.env.NEXT_PUBLIC_API_URL, 
 });
 
 // Intercept requests to automatically add the JWT token if we have one
